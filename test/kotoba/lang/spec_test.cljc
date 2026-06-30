@@ -60,3 +60,15 @@
     (is (some #(and (= (:reason %) :type/keyword)
                     (= (:path %) [:tags 1])) problems))    ; :tags[1] wrong
     (is (some #(= (:reason %) :key/extra)     problems))))  ; closed rejects :extra
+
+(deftest rejects-malformed-spec-and-unknown-type
+  ;; an unknown :type is reported, not silently accepted
+  (is (not (spec/valid? {:type :bogus} "x")))
+  (is (some #(= (:reason %) :spec/unknown-type) (spec/explain {:type :bogus} "x")))
+  ;; nil never satisfies a primitive (except :any)
+  (is (not (spec/valid? {:type :string} nil)))
+  (is (spec/valid? {:type :any} nil))
+  ;; a vector value against a :map spec is rejected
+  (is (not (spec/valid? {:type :map} [1 2])))
+  ;; a non-vector against :vector is rejected
+  (is (not (spec/valid? {:type :vector :of {:type :int}} {:a 1}))))
