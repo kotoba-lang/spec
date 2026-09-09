@@ -4,7 +4,20 @@
  ;; Data-spec validate/explain with no clojure.spec / malli dependency, so it
  ;; runs on kotoba-WASM (SCI). Zero third-party runtime deps; .cljc.
  ;; See ADR-kotoba-lang-foundational-stdlib.md.
- :deps {}
+ :deps {
+        io.github.kotoba-lang/spec-explain
+        {:git/url "https://github.com/kotoba-lang/spec-explain.git"
+         :git/sha "447af3e86074580620b174008427dae4693deab9"}
+        io.github.kotoba-lang/spec-explain-1
+        {:git/url "https://github.com/kotoba-lang/spec-explain-1.git"
+         :git/sha "0e080bd16a8b352898a32b0768b606c8cb68da96"}
+        io.github.kotoba-lang/spec-valid
+        {:git/url "https://github.com/kotoba-lang/spec-valid.git"
+         :git/sha "67c03606849fc26669de45c057dfdec53341cbc8"}
+        io.github.kotoba-lang/spec-validate
+        {:git/url "https://github.com/kotoba-lang/spec-validate.git"
+         :git/sha "34ac419a904b6d5fd932c57b59384cf05728c753"}
+}
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
