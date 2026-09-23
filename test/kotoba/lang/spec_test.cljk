@@ -1,5 +1,5 @@
 (ns kotoba.lang.spec-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [kotoba.lang.spec :as spec]))
 
 (deftest primitives
